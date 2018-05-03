@@ -1,7 +1,7 @@
-#gozh_all
+# gozh_all
 > build all gozh , such as backend, web client, http server, database
 
-##获取项目
+## 获取项目
 
 >git clone https://github.com/gozh-io/gozh_all.git
 
@@ -16,7 +16,7 @@
 	mongo,myapp目录都不需要配置
 ```
 	
-##Build Setup 
+## Build Setup 
 在gozh_all目录下操作
 
 ``` bash
@@ -30,7 +30,7 @@
 	make down
 ```
 
-##获取前端项目
+## 获取前端项目
 
 >在gozh_all目录下make up执行成功后,需要单独生成web前端的静态资源,复制到nginx/html,才能看到页面
 
