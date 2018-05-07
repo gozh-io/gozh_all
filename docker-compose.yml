@@ -25,12 +25,12 @@ services:
       - gozhnet                             
   myapp:
     image: blade2iron/gozh
-    stdin_open: true
-    tty: true
     ports:
       - "8080:80"
     volumes:
       - "./myapp/logs:/myapp/logs/"
+    environment:
+       MONGO_DB_HOST: mongo:27017  
     networks:
       - gozhnet
     depends_on:
