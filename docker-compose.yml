@@ -11,6 +11,8 @@ services:
       - "./nginx/conf:/nginx/conf"
       - "./nginx/logs:/nginx/logs"
       - "./nginx/html:/nginx/html"
+    environment:
+       IMAGE_DB_HOST: mongo:27017 
     networks:
       - gozhnet
   mongo:
@@ -31,6 +33,7 @@ services:
       - "./myapp/logs:/myapp/logs/"
     environment:
        MONGO_DB_HOST: mongo:27017  
+       IMAGE_DB_HOST: mongo:27017 
     networks:
       - gozhnet
     depends_on:
