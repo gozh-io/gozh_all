@@ -11,10 +11,11 @@ services:
       - "./nginx/conf:/nginx/conf"
       - "./nginx/logs:/nginx/logs"
       - "./nginx/html:/nginx/html"
-    environment:
-       IMAGE_DB_HOST: mongo:27017 
     networks:
       - gozhnet
+    depends_on:
+      - mongo
+      - myapp
   mongo:
     image: mongo:3.6
     ports:
@@ -24,21 +25,21 @@ services:
       - "./mongo/configdb/:/data/configdb"
       - "./mongo/log:/var/log/mongodb"
     networks:
-      - gozhnet                             
+      - gozhnet  
   myapp:
     image: blade2iron/gozh
     ports:
       - "8080:80"
     volumes:
       - "./myapp/logs:/myapp/logs/"
-    environment:
-       MONGO_DB_HOST: mongo:27017  
-       IMAGE_DB_HOST: mongo:27017 
     networks:
       - gozhnet
     depends_on:
       - mongo
-      - nginx
 networks:
   gozhnet:
     driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 192.168.200.0/24
